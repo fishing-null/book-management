@@ -1,5 +1,6 @@
-package com.example.book_management;
+package com.example.book_management.controller;
 
+import com.example.book_management.model.BookInfo;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
