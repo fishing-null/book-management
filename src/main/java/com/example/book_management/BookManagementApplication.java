@@ -9,7 +9,7 @@ public class BookManagementApplication {
 
     public static void main(String[] args) {
 
-        Applicationc application = SpringApplication.run(BookManagementApplication.class, args);
+        ApplicationContext application = SpringApplication.run(BookManagementApplication.class, args);
 
     }
 
