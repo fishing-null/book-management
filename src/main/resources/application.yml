@@ -1,13 +1,14 @@
 
 spring:
-  #???????
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/book_management?charsetEncoding=utf8&useSSL=false
     username: root
     password: Zhubojin1234
     driver-class-name: com.mysql.cj.jdbc.Driver
 mybatis:
-  #????
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: false
+logging:
+  file:
+    name: /logger/spring-book.log

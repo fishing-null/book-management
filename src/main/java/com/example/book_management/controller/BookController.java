@@ -1,19 +1,19 @@
 package com.example.book_management.controller;
 
-import com.example.book_management.dao.BookDao;
 import com.example.book_management.model.BookInfo;
+import com.example.book_management.model.PageRequest;
+import com.example.book_management.model.PageResult;
 import com.example.book_management.service.BookService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 @RestController
 @RequestMapping("/book")
+@Slf4j
 public class BookController {
     @Autowired
     private BookService bookService;
@@ -22,5 +22,19 @@ public class BookController {
         List<BookInfo> bookInfos = bookService.getBookList();
         return bookInfos;
     }
-
+    @RequestMapping("/getBookListByPage")
+    public PageResult<BookInfo> selectBookInfoByPage(PageRequest pageRequest){
+        log.info("查询翻页信息,pageRequest:{}",pageRequest);
+        //逻辑处理
+        if(pageRequest.getPageSize() <= 0 || pageRequest.getCurrentPage() < 1){
+            return null;
+        }
+        PageResult<BookInfo> bookInfoPageResult = null;
+        try {
+            bookInfoPageResult = bookService.selectBookInfoByPage(pageRequest);
+        }catch (Exception e){
+            log.error("查询翻页信息错误,e:{}",e);
+        }
+        return bookInfoPageResult;
+    }
 }
