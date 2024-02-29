@@ -17,11 +17,7 @@ import java.util.List;
 public class BookController {
     @Autowired
     private BookService bookService;
-    @RequestMapping("/getBookList")
-    public List<BookInfo> getBookList(){
-        List<BookInfo> bookInfos = bookService.getBookList();
-        return bookInfos;
-    }
+
     @RequestMapping("/getBookListByPage")
     public PageResult<BookInfo> selectBookInfoByPage(PageRequest pageRequest){
         log.info("查询翻页信息,pageRequest:{}",pageRequest);

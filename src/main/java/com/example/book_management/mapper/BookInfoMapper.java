@@ -13,7 +13,7 @@ public interface BookInfoMapper {
      * 获取当前页纪录
      */
     @Select("select * from book_info where status != 0 " +
-            "order by id desc limit #{offset},#{pageSize}")
+            "order by id asc limit #{offset},#{pageSize}")
     List<BookInfo> selectBookInfoByPage(Integer offset, Integer pageSize);
 
     /**
