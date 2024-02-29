@@ -33,4 +33,8 @@ public class BookController {
         }
         return bookInfoPageResult;
     }
+    @RequestMapping("/addBook")
+    public Boolean addBook(BookInfo bookInfo){
+        return true;
+    }
 }

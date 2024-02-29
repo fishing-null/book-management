@@ -1,5 +1,6 @@
 package com.example.book_management.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -10,6 +11,7 @@ public class BookInfo {
     private String bookName;
     private String author;
     private Integer count;
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private BigDecimal price;
     private String publish;
     private Integer status;
