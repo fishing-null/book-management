@@ -6,6 +6,7 @@ import com.example.book_management.model.PageResult;
 import com.example.book_management.service.BookService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,7 +35,21 @@ public class BookController {
         return bookInfoPageResult;
     }
     @RequestMapping("/addBook")
-    public Boolean addBook(BookInfo bookInfo){
-        return true;
+    public String addBook(BookInfo bookInfo){
+        log.info("接收到图书请求, bookInfo:{}",bookInfo);
+        if(!StringUtils.hasLength(bookInfo.getBookName())
+                || !StringUtils.hasLength(bookInfo.getAuthor())
+                || bookInfo.getCount() < 0
+                || bookInfo.getPrice() == null
+                || !StringUtils.hasLength(bookInfo.getPublish()))
+        {
+                return "插入参数失败,请检查入参";
+        }
+        Integer result = bookService.addBook(bookInfo);
+        if(result <= 0){
+            log.error("添加图书出错:bookInfo:{}",bookInfo);
+            return "添加图书出错,请联系管理人";
+        }
+        return "";
     }
 }

@@ -24,6 +24,6 @@ public interface BookInfoMapper {
     @Select("select count(1) from book_info where status != 0")
     Integer count();
     @Insert("insert into book_info (book_name,author,count,price,publish,status) values " +
-            "(#{bookName},#author},#{count},#{price},#{publish},#{status})")
+            "(#{bookName},#{author},#{count},#{price},#{publish},#{status})")
     Integer insertBook(BookInfo bookInfo);
 }
