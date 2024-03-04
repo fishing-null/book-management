@@ -64,6 +64,18 @@
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script>
         function add() {
+            $.ajax({
+                type:"post",
+                url:"/book/addBook",
+                data:$("#addBook").serialize(),//提交整个form表单
+                success:function (result){
+                    if(result==""){
+                        location.href = "book_list.html";
+                    }else {
+                        alert(result);
+                    }
+                }
+            })
             alert("添加成功");
             location.href = "book_list.html";
         }
