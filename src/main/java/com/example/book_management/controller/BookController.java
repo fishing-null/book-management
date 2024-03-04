@@ -52,4 +52,20 @@ public class BookController {
         }
         return "";
     }
+
+    @RequestMapping("/queryBookInfoById")
+    public BookInfo queryBookInfoById(Integer bookId){
+        log.info("根据id查询图书,bookId:{}",bookId);
+        try {
+            BookInfo bookInfo = bookService.queryBookInfoById(bookId);
+        }catch (Exception e){
+            log.error("查询图书失败,e:{}",e);
+        }
+        return null;
+    }
+    @RequestMapping("/updateBook")
+    public String updateBook(BookInfo bookInfo){
+        return "";
+
+    }
 }

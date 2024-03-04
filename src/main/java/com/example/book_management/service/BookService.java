@@ -42,4 +42,8 @@ public class BookService {
         }
         return result;
     }
+
+    public BookInfo queryBookInfoById(Integer bookId){
+        return bookInfoMapper.queryBookInfoById(bookId);
+    }
 }
