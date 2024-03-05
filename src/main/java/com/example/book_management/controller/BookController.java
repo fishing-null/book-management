@@ -58,6 +58,7 @@ public class BookController {
         log.info("根据id查询图书,bookId:{}",bookId);
         try {
             BookInfo bookInfo = bookService.queryBookInfoById(bookId);
+            return bookInfo;
         }catch (Exception e){
             log.error("查询图书失败,e:{}",e);
         }
