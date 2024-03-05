@@ -46,4 +46,20 @@ public class BookService {
     public BookInfo queryBookInfoById(Integer bookId){
         return bookInfoMapper.queryBookInfoById(bookId);
     }
+
+    /**
+     * 更新图书
+     * @param bookInfo
+     * @return
+     */
+    public Integer updateBook(BookInfo bookInfo){
+
+        Integer result = 0;
+        try{
+            result =  bookInfoMapper.updateBook(bookInfo);
+        }catch (Exception e){
+            log.info("更新图书失败,e:{}",e);
+        }
+        return result;
+    }
 }

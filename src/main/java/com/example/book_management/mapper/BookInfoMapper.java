@@ -29,4 +29,6 @@ public interface BookInfoMapper {
 
     @Select("select * from book_info where id = #{id}")
     BookInfo queryBookInfoById(Integer id);
+
+    Integer updateBook(BookInfo bookInfo);
 }
