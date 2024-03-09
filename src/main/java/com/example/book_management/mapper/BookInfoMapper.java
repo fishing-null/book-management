@@ -4,6 +4,7 @@ import com.example.book_management.model.BookInfo;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -31,4 +32,8 @@ public interface BookInfoMapper {
     BookInfo queryBookInfoById(Integer id);
 
     Integer updateBook(BookInfo bookInfo);
+
+    Integer batchDelete(List<Integer> ids){
+
+    }
 }

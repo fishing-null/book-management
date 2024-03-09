@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -81,4 +82,19 @@ public class BookController {
         return "";
     }
 
+    /**
+     * 批量删除图书
+     * @param ids
+     * @return
+     */
+    @RequestMapping("/batchDelete")
+    public String batchBook(@RequestParam List<Integer> ids){
+        log.info("接受请求,批量删除图书,图书ID：{}",ids);
+        Integer result = bookService.batchDelete(ids);
+        if(result <= 0){
+            log.error("批量删除失败,请联系管理员");
+            return "更新批量删除失败,请联系管理员";
+        }
+        return "";
+    }
 }
