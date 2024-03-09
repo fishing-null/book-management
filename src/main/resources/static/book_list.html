@@ -111,11 +111,25 @@
                 });
             }
 
-            function deleteBook(id) {
+            function deleteBook(bookId) {
                 var isDelete = confirm("确认删除?");
                 if (isDelete) {
+                    $.ajax({
+                        type:"post",
+                        url:"/book/updateBook",
+                        data:{
+                            id: bookId,
+                            status: 0
+                        },
+                        success:function (result){
+                            if(result == ""){
+                                location.href="book_list.html";
+                            }else {
+                                alert(result)
+                            }
+                        }
+                    });
                     //删除图书
-                    alert("删除成功");
                 }
             }
             function batchDelete() {

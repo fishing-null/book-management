@@ -64,6 +64,12 @@ public class BookController {
         }
         return null;
     }
+
+    /**
+     * 更新图书 & 逻辑删除
+     * @param bookInfo
+     * @return
+     */
     @RequestMapping("/updateBook")
     public String updateBook(BookInfo bookInfo){
         log.info("接收到更新图书的请求,bookInfo:{}",bookInfo);
@@ -73,6 +79,6 @@ public class BookController {
             return "更新图书失败,请联系管理员";
         }
         return "";
-
     }
+
 }
