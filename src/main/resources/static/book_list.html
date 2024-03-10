@@ -141,7 +141,17 @@
                         ids.push($(this).val());
                     });
                     console.log(ids);
-                    alert("批量删除成功");
+                    $.ajax({
+                        type:"post",
+                        url:"/book/batchDelete?ids="+ids,
+                        success:function (result){
+                            if(result==""){
+                                location.href = "book_list.html";
+                            }else{
+                                alert(result);
+                            }
+                        }
+                    });
                 }
             }
 
