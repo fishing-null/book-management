@@ -1,8 +1,8 @@
 package com.example.book_management.controller;
 
-import com.example.book_management.model.BookInfo;
-import com.example.book_management.model.PageRequest;
-import com.example.book_management.model.PageResult;
+import com.example.book_management.constant.Constants;
+import com.example.book_management.enums.ResultCode;
+import com.example.book_management.model.*;
 import com.example.book_management.service.BookService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -21,19 +22,21 @@ public class BookController {
     private BookService bookService;
 
     @RequestMapping("/getBookListByPage")
-    public PageResult<BookInfo> selectBookInfoByPage(PageRequest pageRequest){
+    public Result getBookListByPage(PageRequest pageRequest, HttpSession session){
         log.info("查询翻页信息,pageRequest:{}",pageRequest);
         //逻辑处理
         if(pageRequest.getPageSize() <= 0 || pageRequest.getCurrentPage() < 1){
-            return null;
+            return Result.fail("参数校验失败");
         }
         PageResult<BookInfo> bookInfoPageResult = null;
         try {
             bookInfoPageResult = bookService.selectBookInfoByPage(pageRequest);
+            return Result.success(bookInfoPageResult);
         }catch (Exception e){
             log.error("查询翻页信息错误,e:{}",e);
+            return Result.fail(e.getMessage());
         }
-        return bookInfoPageResult;
+
     }
     @RequestMapping("/addBook")
     public String addBook(BookInfo bookInfo){

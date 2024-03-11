@@ -70,7 +70,11 @@
                     url:"/book/getBookListByPage"+location.search,
                     success:function(result){
                         var finalHtml = "";
-                        for(var book of result.records){
+                        var pageResult = result.data;
+                        if(result.code == "UNLOGIN"){
+                            location.href = "login.html";
+                        };
+                        for(var book of pageResult.records){
                             //根据每一条记录去拼接html, 也就是一个tr
                             finalHtml += '<tr>';
                             finalHtml += '<td><input type="checkbox" name="selectBook" value="'+book.id+'" id="selectBook" class="book-select"></td>';
@@ -91,9 +95,9 @@
                         //翻页信息
                         $("#pageContainer").jqPaginator({
                             totalCounts: 100, //总记录数
-                            pageSize: result.total,    //每页的个数
+                            pageSize: pageResult.total,    //每页的个数
                             visiblePages: 5, //可视页数
-                            currentPage: result.pageRequest.currentPage,  //当前页码
+                            currentPage: pageResult.pageRequest.currentPage,  //当前页码
                             first: '<li class="page-item"><a class="page-link">首页</a></li>',
                             prev: '<li class="page-item"><a class="page-link" href="javascript:void(0);">上一页<\/a><\/li>',
                             next: '<li class="page-item"><a class="page-link" href="javascript:void(0);">下一页<\/a><\/li>',

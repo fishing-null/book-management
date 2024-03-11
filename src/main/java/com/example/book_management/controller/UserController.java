@@ -1,5 +1,6 @@
 package com.example.book_management.controller;
 
+import com.example.book_management.constant.Constants;
 import com.example.book_management.model.UserInfo;
 import com.example.book_management.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class UserController {
         //校验成功
         if(password.equals(userInfo.getPassword())) {
             userInfo.setPassword("");
-            session.setAttribute("username",userInfo);
+            session.setAttribute(Constants.SESSION_USER_KEY,userInfo);
             return true;
         }
         return false;
