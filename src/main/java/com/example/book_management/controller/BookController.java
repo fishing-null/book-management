@@ -38,7 +38,7 @@ public class BookController {
         }
 
     }
-    @RequestMapping("/addBook")
+    @RequestMapping(value = "/addBook",produces = "application/json")
     public String addBook(BookInfo bookInfo){
         log.info("接收到图书请求, bookInfo:{}",bookInfo);
         if(!StringUtils.hasLength(bookInfo.getBookName())
@@ -74,7 +74,7 @@ public class BookController {
      * @param bookInfo
      * @return
      */
-    @RequestMapping("/updateBook")
+    @RequestMapping(value = "/updateBook",produces = "application/json")
     public String updateBook(BookInfo bookInfo){
         log.info("接收到更新图书的请求,bookInfo:{}",bookInfo);
         Integer result = bookService.updateBook(bookInfo);
@@ -90,7 +90,7 @@ public class BookController {
      * @param ids
      * @return
      */
-    @RequestMapping("/batchDelete")
+    @RequestMapping(value = "/batchDelete",produces = "application/json")
     public String batchBook(@RequestParam List<Integer> ids){
         log.info("接受请求,批量删除图书,图书ID：{}",ids);
         Integer result = bookService.batchDelete(ids);
